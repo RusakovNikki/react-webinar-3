@@ -1,3 +1,5 @@
+import { createUniqKey } from "./utils";
+
 /**
  * Хранилище состояния приложения
  */
@@ -44,7 +46,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.state.list.length + 1, title: 'Новая запись'}]
+      list: [...this.state.list, { code: createUniqKey(), title: 'Новая запись' }]
     })
   };
 
@@ -69,7 +71,14 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+          if (!item.count) {
+            item.count = 0
+          }
+          item.count = item.selected ? ++item.count : item.count
+        } else {
+          item.selected = false
         }
+
         return item;
       })
     })

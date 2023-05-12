@@ -26,3 +26,26 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+export const createUniqKey = (id) => {
+  return Math.random().toString(36).substr(2, 9)
+}
+
+const pluralize = (num) => {
+  if (num % 10 === 1 && num % 100 !== 11) {
+    return "раз";
+  } else if (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)) {
+    return "раза";
+  } else {
+    return "раз";
+  }
+}
+
+export const showCount = (count, selected) => {
+
+  if (!count || !selected) {
+    return ''
+  }
+
+  return ` | Выделяли ${count} ${pluralize(count)}`
+}
