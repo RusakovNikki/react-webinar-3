@@ -1,5 +1,3 @@
-import { createUniqKey } from "./utils";
-
 /**
  * Хранилище состояния приложения
  */
@@ -7,6 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.index = initState.list.length; // индекс последнего элемента
   }
 
   /**
@@ -46,7 +45,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: createUniqKey(), title: 'Новая запись' }]
+      list: [...this.state.list, { code: ++this.index, title: 'Новая запись' }]
     })
   };
 
@@ -72,11 +71,11 @@ class Store {
         if (item.code === code) {
           item.selected = !item.selected;
           if (!item.count) {
-            item.count = 0
+            item.count = 0;
           }
-          item.count = item.selected ? ++item.count : item.count
+          item.count = item.selected ? ++item.count : item.count;
         } else {
-          item.selected = false
+          item.selected = false;
         }
 
         return item;

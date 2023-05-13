@@ -12,9 +12,9 @@ function App({ store }) {
   const list = store.getState().list;
 
   const dellItemHandler = (e, code) => {
-    e.stopPropagation()
+    e.stopPropagation();
 
-    store.deleteItem(code)
+    store.deleteItem(code);
   }
 
   return (
@@ -31,7 +31,7 @@ function App({ store }) {
             <div key={item.code} className='List-item'>
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                 onClick={() => store.selectItem(item.code)}>
-                <div className='Item-code'>{index + 1}</div>
+                <div className='Item-code'>{item.code}</div>
                 <div className='Item-title'>{item.title + showCount(item.count, item.selected)}</div>
                 <div className='Item-actions'>
                   <button onClick={(e) => dellItemHandler(e, item.code)}>
