@@ -26,7 +26,7 @@ function App({ store }) {
       store.removeItem(item)
     }, [])
   }
-
+  console.log(shopCart);
   return (
     <PageLayout>
       <Head title='Магазин' />
