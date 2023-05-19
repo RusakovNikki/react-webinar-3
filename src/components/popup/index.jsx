@@ -29,7 +29,9 @@ const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
             </Item>
           ))}
         </div>
-        <div className={cn("price")}></div>
+        <div className={cn("price")}>
+          <b className={cn("result")}>Итого {shopCart.itemsPrice} ₽</b>
+        </div>
       </div>
     </div>
   );

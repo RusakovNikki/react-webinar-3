@@ -68,7 +68,6 @@ class Store {
   };
 
   removeItem(item) {
-    console.log(item);
     this.setShopCart({
       ...this.shopCart,
       itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)],
