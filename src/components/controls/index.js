@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import { plural } from "../../utils";
 
 function Controls({ shopCart, onOpenPupup }) {
   const cn = bem('Controls');
@@ -11,7 +12,7 @@ function Controls({ shopCart, onOpenPupup }) {
       <p>В корзине:</p>
       {
         shopCart.itemsCount ?
-          <b>{shopCart.itemsCount} товара / {shopCart.itemsPrice} ₽</b> :
+          <b>{shopCart.itemsCount} {plural(shopCart.itemsCount, { one: 'товар', few: 'товара', many: 'товаров' })} / {shopCart.itemsPrice} ₽</b> :
           <b>пусто</b>
       }
       <button className={cn('btn')} onClick={() => onOpenPupup()}>Перейти</button>
