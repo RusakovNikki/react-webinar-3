@@ -14,8 +14,8 @@ const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
     }
   };
 
-  const onRemove = (code) => {
-    onRemoveItem(code);
+  const onRemove = (item) => {
+    onRemoveItem(item);
   };
 
   return (
@@ -25,7 +25,7 @@ const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
         <div className={cn("list")}>
           {shopCart.itemsList.map((item) => (
             <Item item={item} key={item.code}>
-              <button onClick={() => onRemove(item.code)}>Удалить</button>
+              <button onClick={() => onRemove(item)}>Удалить</button>
             </Item>
           ))}
         </div>

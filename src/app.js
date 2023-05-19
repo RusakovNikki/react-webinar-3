@@ -22,8 +22,8 @@ function App({ store }) {
     onOpenPupup: useCallback(() => {
       setOpenPopup(prev => !prev)
     }, []),
-    onRemoveItem: useCallback((code) => {
-      console.log(code);
+    onRemoveItem: useCallback((item) => {
+      store.removeItem(item)
     }, [])
   }
 

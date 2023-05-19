@@ -66,6 +66,16 @@ class Store {
       itemsPrice: this.shopCart.itemsPrice + item.price
     })
   };
+
+  removeItem(item) {
+    console.log(item);
+    this.setShopCart({
+      ...this.shopCart,
+      itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)],
+      itemsCount: this.shopCart.itemsCount - 1,
+      itemsPrice: this.shopCart.itemsPrice - item.price
+    })
+  }
 }
 
 export default Store;
