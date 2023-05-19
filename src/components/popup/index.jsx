@@ -1,0 +1,38 @@
+import React from "react";
+import { cn as bem } from "@bem-react/classname";
+import "./style.css";
+import Head from "../head";
+import Item from "../item";
+
+const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
+  const cn = bem("Popup");
+  const sortRef = React.useRef(null);
+
+  const hidePopup = (event) => {
+    if (!sortRef.current.innerHTML.includes(event.target.innerHTML)) {
+      setOpenPopup(false);
+    }
+  };
+
+  const onRemove = (code) => {
+    onRemoveItem(code);
+  };
+
+  return (
+    <div className={`${cn()}`} onClick={hidePopup}>
+      <div className={cn("container")} ref={sortRef}>
+        <Head title="Корзина" />
+        <div className={cn("list")}>
+          {shopCart.itemsList.map((item) => (
+            <Item item={item} key={item.code}>
+              <button onClick={() => onRemove(item.code)}>Удалить</button>
+            </Item>
+          ))}
+        </div>
+        <div className={cn("price")}></div>
+      </div>
+    </div>
+  );
+};
+
+export default Popup;

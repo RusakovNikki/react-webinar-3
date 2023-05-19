@@ -2,6 +2,8 @@
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
+  max-height: 61px;
+  align-items: center;
 }
 
 .Item_selected {
@@ -22,4 +24,10 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;
+  gap: 15px;
+  align-items: center;
+}
+
+.Item-price {
+  white-space: nowrap;
 }
