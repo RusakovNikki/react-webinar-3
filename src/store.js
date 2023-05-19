@@ -61,7 +61,7 @@ class Store {
   addItem(item) {
     let currItem = this.shopCart.itemsList.find(itm => itm.code === item.code)
     if (currItem) {
-      currItem = { code: currItem.code, title: currItem.title, price: currItem.price * (currItem.count + 1), count: ++currItem.count }
+      currItem = { code: currItem.code, title: currItem.title, price: item.price * (currItem.count + 1), count: ++currItem.count }
     }
     else {
       currItem = { code: item.code, title: item.title, price: item.price, count: 1 }
@@ -78,7 +78,7 @@ class Store {
     this.setShopCart({
       ...this.shopCart,
       itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)],
-      itemsCount: this.shopCart.itemsCount - 1,
+      itemsCount: this.shopCart.itemsCount - item.count,
       itemsPrice: this.shopCart.itemsPrice - item.price
     })
   }

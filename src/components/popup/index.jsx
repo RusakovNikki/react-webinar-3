@@ -25,6 +25,7 @@ const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
         <div className={cn("list")}>
           {shopCart.itemsList.map((item) => (
             <Item item={item} key={item.code}>
+              <p className={cn("count")}>{item.count} шт</p>
               <button onClick={() => onRemove(item)}>Удалить</button>
             </Item>
           ))}
