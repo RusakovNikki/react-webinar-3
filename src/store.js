@@ -86,19 +86,20 @@ class Store {
    * Добавление в корзину
    */
   addItem(item) {
-    let currItem = this.shopCart.itemsList.find(itm => itm.code === item.code)
-    if (currItem) {
-      currItem = { code: currItem.code, title: currItem.title, price: item.price * (currItem.count + 1), count: ++currItem.count }
+    let currItem = this.shopCart.itemsList
+      .filter(itm => itm.code === item.code)
+      .map(itm => ({ code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: ++itm.count }))[0];
+
+    if (!currItem) {
+      currItem = { code: item.code, title: item.title, price: item.price, count: 1 };
     }
-    else {
-      currItem = { code: item.code, title: item.title, price: item.price, count: 1 }
-    }
+
     this.setShopCart({
       ...this.shopCart,
       itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem],
       itemsCount: this.shopCart.itemsCount + 1,
       itemsPrice: this.shopCart.itemsPrice + item.price
-    })
+    });
   };
 
   removeItem(item) {
@@ -107,7 +108,7 @@ class Store {
       itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)],
       itemsCount: this.shopCart.itemsCount - item.count,
       itemsPrice: this.shopCart.itemsPrice - item.price
-    })
+    });
   }
 }
 
