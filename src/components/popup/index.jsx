@@ -46,4 +46,4 @@ const Popup = ({ setOpenPopup, shopCart, onRemoveItem }) => {
   );
 };
 
-export default Popup;
+export default React.memo(Popup);
