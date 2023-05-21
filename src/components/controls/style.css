@@ -5,5 +5,20 @@
   box-sizing: border-box;
   height: 63px;
   align-items: center;
-  gap: 15px
+  gap: 20px
+}
+
+.Controls-cart {
+  font-family: 'Arial';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.Controls-btn {
+  width: 80px;
+}
+
+.Controls-title {
+  font-size: 18px;
 }

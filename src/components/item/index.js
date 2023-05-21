@@ -9,7 +9,7 @@ function Item(props) {
   const callbacks = {
     onAdd: (e) => {
       e.stopPropagation();
-      props.onAddItem(props.item);
+      props.onClickItem(props.item);
     }
   }
 

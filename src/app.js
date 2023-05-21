@@ -20,19 +20,19 @@ function App({ store }) {
       store.addItem(price);
     }, [store]),
     onOpenPupup: useCallback(() => {
-      setOpenPopup(prev => !prev)
+      setOpenPopup(!openPopup)
     }, []),
     onRemoveItem: useCallback((item) => {
       store.removeItem(item)
     }, [])
   }
-  console.log(shopCart);
+
   return (
     <PageLayout>
       <Head title='Магазин' />
       <Controls shopCart={shopCart} onOpenPupup={callbacks.onOpenPupup} />
       <List list={list}
-        onAddItem={callbacks.onAddItem} />
+        onClickItem={callbacks.onAddItem} />
       {openPopup && <Popup setOpenPopup={setOpenPopup} shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} />}
     </PageLayout>
   );

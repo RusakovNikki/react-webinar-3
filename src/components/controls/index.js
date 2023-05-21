@@ -9,12 +9,10 @@ function Controls({ shopCart, onOpenPupup }) {
 
   return (
     <div className={cn()}>
-      <p>В корзине:</p>
-      {
-        shopCart.itemsCount ?
-          <b>{shopCart.itemsCount} {plural(shopCart.itemsCount, { one: 'товар', few: 'товара', many: 'товаров' })} / {shopCart.itemsPrice} ₽</b> :
-          <b>пусто</b>
-      }
+      <p className={cn('title')}>В корзине:</p>
+      {shopCart.itemsCount ?
+        <b className={cn('cart')}>{shopCart.itemsCount} {plural(shopCart.itemsCount, { one: 'товар', few: 'товара', many: 'товаров' })} / {shopCart.itemsPrice} ₽</b> :
+        <b>пусто</b>}
       <button className={cn('btn')} onClick={() => onOpenPupup()}>Перейти</button>
     </div>
   )

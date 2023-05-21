@@ -24,10 +24,14 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;
-  gap: 15px;
+  gap: 24px;
   align-items: center;
 }
 
 .Item-price {
   white-space: nowrap;
+  font-family: 'Arial';
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
 }

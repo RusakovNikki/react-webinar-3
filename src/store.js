@@ -56,6 +56,33 @@ class Store {
   }
 
   /**
+   * Удаление записи по коду
+   * @param code
+   */
+  deleteItem(code) {
+    this.setState({
+      ...this.state,
+      list: this.state.list.filter(item => item.code !== code)
+    })
+  };
+
+  /**
+   * Выделение записи по коду
+   * @param code
+   */
+  selectItem(code) {
+    this.setState({
+      ...this.state,
+      list: this.state.list.map(item => {
+        if (item.code === code) {
+          item.selected = !item.selected;
+        }
+        return item;
+      })
+    })
+  }
+
+  /**
    * Добавление в корзину
    */
   addItem(item) {

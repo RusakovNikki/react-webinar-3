@@ -17,10 +17,11 @@
     height: 407px;
     background-color: #fff;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .Popup-list {
-    height: 270px;
+    max-height: 320px;
     overflow: auto;
 }
 
@@ -32,4 +33,15 @@
 
 .Popup-count {
     white-space: nowrap;
+}
+
+.Popup-btn {
+    width: 76px;
+}
+
+.Popup-box {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    justify-content: center;
 }
