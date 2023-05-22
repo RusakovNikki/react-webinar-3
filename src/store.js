@@ -85,7 +85,9 @@ class Store {
   /**
    * Добавление в корзину
    */
-  addItem(item) {
+  addItem(code) {
+    let item = this.state.list.find(itm => itm.code === code);
+
     let currItem = this.shopCart.itemsList
       .filter(itm => itm.code === item.code)
       .map(itm => ({ code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: itm.count + 1 }))[0];
@@ -94,7 +96,7 @@ class Store {
       currItem = { code: item.code, title: item.title, price: item.price, count: 1 };
     }
 
-    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem]
+    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem];
 
     this.setShopCart({
       ...this.shopCart,
@@ -104,14 +106,16 @@ class Store {
     });
   };
 
-  removeItem(item) {
-    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)]
+  removeItem(code) {
+    let currItem = this.shopCart.itemsList.find(itm => itm.code === code);
+
+    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== code)];
 
     this.setShopCart({
       ...this.shopCart,
       itemsList,
       itemsCount: itemsList.length,
-      itemsPrice: this.shopCart.itemsPrice - item.price
+      itemsPrice: this.shopCart.itemsPrice - currItem.price
     });
   }
 }

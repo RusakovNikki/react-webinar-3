@@ -4,6 +4,7 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from './components/popup';
+import Cart from './components/cart';
 
 /**
  * Приложение
@@ -16,8 +17,8 @@ function App({ store }) {
   const shopCart = store.getShopCart();
 
   const callbacks = {
-    onAddItem: useCallback((price) => {
-      store.addItem(price);
+    onAddItem: useCallback((code) => {
+      store.addItem(code);
     }, [store]),
     onOpenPupup: useCallback(() => {
       setOpenPopup(!openPopup)
@@ -31,9 +32,10 @@ function App({ store }) {
     <PageLayout>
       <Head title='Магазин' />
       <Controls shopCart={shopCart} onOpenPupup={callbacks.onOpenPupup} />
-      <List list={list}
-        onClickItem={callbacks.onAddItem} />
-      {openPopup && <Popup setOpenPopup={setOpenPopup} shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} />}
+      <List list={list} onClickItem={callbacks.onAddItem} />
+      {openPopup && <Popup setOpenPopup={setOpenPopup}>
+        <Cart shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} setOpenPopup={setOpenPopup} />
+      </Popup>}
     </PageLayout>
   );
 }

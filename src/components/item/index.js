@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import { formatter } from "../../utils";
 
 function Item(props) {
   const cn = bem('Item');
@@ -9,7 +10,7 @@ function Item(props) {
   const callbacks = {
     onAdd: (e) => {
       e.stopPropagation();
-      props.onClickItem(props.item);
+      props.onClickItem(props.item.code);
     }
   }
 
@@ -18,7 +19,7 @@ function Item(props) {
       <div className={cn('code')}>{props.item.code}</div>
       <div className={cn('title')}>{props.item.title}</div>
       <div className={cn('actions')}>
-        <p className={cn('price')}>{`${props.item.price} ₽`}</p>
+        <p className={cn('price')}>{`${formatter(props.item.price)}`}</p>
         {props.children || <button onClick={callbacks.onAdd}>
           Добавить
         </button>}
