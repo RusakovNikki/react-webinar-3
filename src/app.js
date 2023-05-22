@@ -5,7 +5,7 @@ import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from './components/popup';
 import Cart from './components/cart';
-import Item from './components/item';
+import ItemList from './components/item-list';
 
 /**
  * Приложение
@@ -30,7 +30,7 @@ function App({ store }) {
   }
 
   const renderListItems = useCallback((item, onClickItem) => {
-    return <Item item={item} onClickItem={onClickItem} />;
+    return <ItemList item={item} onClickItem={onClickItem} />;
   }, [])
 
   return (

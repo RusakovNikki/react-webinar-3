@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Item from "../item";
+import ItemList from "../item-list";
 import './style.css';
 
 function List({ list, onClickItem, renderListItems }) {

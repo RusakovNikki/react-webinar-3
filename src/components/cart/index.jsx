@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import "./style.css";
 import Head from "../head";
-import Item from "../item";
 import List from "../list";
 import { cn as bem } from "@bem-react/classname";
 import { formatter } from "../../utils";
+import ItemCart from "../item-cart";
 
 const Cart = ({ shopCart, onRemoveItem, setOpenPopup }) => {
   const cn = bem("Cart");
@@ -14,12 +14,7 @@ const Cart = ({ shopCart, onRemoveItem, setOpenPopup }) => {
   };
 
   const renderListItems = useCallback((item, onClickItem) => {
-    return (
-      <Item item={item} key={item.code}>
-        <p className={cn("count")}>{item.count} шт</p>
-        <button onClick={() => onClickItem(item.code)}>Удалить</button>
-      </Item>
-    );
+    return <ItemCart item={item} key={item.code} onRemoveItem={onClickItem} />;
   }, []);
 
   return (
