@@ -5,6 +5,7 @@ import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Popup from './components/popup';
 import Cart from './components/cart';
+import Item from './components/item';
 
 /**
  * Приложение
@@ -28,11 +29,15 @@ function App({ store }) {
     }, [])
   }
 
+  const renderListItems = useCallback((item, onClickItem) => {
+    return <Item item={item} onClickItem={onClickItem} />;
+  }, [])
+
   return (
     <PageLayout>
       <Head title='Магазин' />
       <Controls shopCart={shopCart} onOpenPupup={callbacks.onOpenPupup} />
-      <List list={list} onClickItem={callbacks.onAddItem} />
+      <List list={list} onClickItem={callbacks.onAddItem} renderListItems={renderListItems} />
       {openPopup && <Popup setOpenPopup={setOpenPopup}>
         <Cart shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} setOpenPopup={setOpenPopup} />
       </Popup>}
