@@ -1,11 +1,6 @@
 .List {}
 
 .List-item {
-  border-bottom: 1px dashed #ccc;
   max-height: 61px;
   box-sizing: border-box;
-}
-
-.List-item:first-child {
-  border-top: 1px dashed #ccc;
 }

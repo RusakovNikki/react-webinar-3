@@ -4,6 +4,11 @@
   transition: background-color 1s;
   max-height: 61px;
   align-items: center;
+  border-bottom: 1px dashed #ccc;
+}
+
+.Item:first-child {
+  border-top: 1px dashed #ccc;
 }
 
 .Item_selected {

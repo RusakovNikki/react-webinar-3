@@ -88,25 +88,29 @@ class Store {
   addItem(item) {
     let currItem = this.shopCart.itemsList
       .filter(itm => itm.code === item.code)
-      .map(itm => ({ code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: ++itm.count }))[0];
+      .map(itm => ({ code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: itm.count + 1 }))[0];
 
     if (!currItem) {
       currItem = { code: item.code, title: item.title, price: item.price, count: 1 };
     }
 
+    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem]
+
     this.setShopCart({
       ...this.shopCart,
-      itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem],
-      itemsCount: this.shopCart.itemsCount + 1,
+      itemsList,
+      itemsCount: itemsList.length,
       itemsPrice: this.shopCart.itemsPrice + item.price
     });
   };
 
   removeItem(item) {
+    let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)]
+
     this.setShopCart({
       ...this.shopCart,
-      itemsList: [...this.shopCart.itemsList.filter(itm => itm.code !== item.code)],
-      itemsCount: this.shopCart.itemsCount - item.count,
+      itemsList,
+      itemsCount: itemsList.length,
       itemsPrice: this.shopCart.itemsPrice - item.price
     });
   }

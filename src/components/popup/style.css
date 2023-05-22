@@ -10,29 +10,39 @@
     align-items: center;
     top: 0;
     left: 0;
+    overflow: auto;
 }
 
 .Popup-container {
     width: 960px;
-    height: 407px;
+    min-height: 407px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .Popup-list {
-    max-height: 320px;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .Popup-price {
     display: flex;
-    justify-content: flex-end;
     padding: 20px 20px 20px 10px;
+    min-width: 149px;
+    align-self: flex-end;
+    justify-content: space-between;
+    margin-right: 100px;
+    font-size: 18px;
 }
 
 .Popup-count {
     white-space: nowrap;
+    min-width: 70px;
+    text-align: end;
+    padding-right: 15px;
+    font-size: 18px;
 }
 
 .Popup-btn {
@@ -42,6 +52,6 @@
 .Popup-box {
     display: flex;
     flex-direction: column;
-    height: 320px;
+    min-height: 320px;
     justify-content: center;
 }
