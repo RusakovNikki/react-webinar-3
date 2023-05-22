@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
-import List from "./components/list";
-import Controls from "./components/controls";
-import Head from "./components/head";
-import PageLayout from "./components/page-layout";
+import React, {useCallback, useState} from 'react';
+import List from './components/list';
+import Controls from './components/controls';
+import Head from './components/head';
+import PageLayout from './components/page-layout';
 import Popup from './components/popup';
 import Cart from './components/cart';
 import ItemList from './components/item-list';
@@ -12,7 +12,7 @@ import ItemList from './components/item-list';
  * @param store {Store} Хранилище состояния приложения
  * @returns {React.ReactElement}
  */
-function App({ store }) {
+function App({store}) {
   const [openPopup, setOpenPopup] = useState(false)
   const list = store.getState().list;
   const shopCart = store.getShopCart();
@@ -23,7 +23,7 @@ function App({ store }) {
     }, [store]),
     onOpenPupup: useCallback(() => {
       setOpenPopup(!openPopup)
-    }, []),
+    }, [openPopup]),
     onRemoveItem: useCallback((item) => {
       store.removeItem(item)
     }, [])
@@ -38,8 +38,8 @@ function App({ store }) {
       <Head title='Магазин' />
       <Controls shopCart={shopCart} onOpenPupup={callbacks.onOpenPupup} />
       <List list={list} onClickItem={callbacks.onAddItem} renderListItems={renderListItems} />
-      {openPopup && <Popup setOpenPopup={setOpenPopup}>
-        <Cart shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} setOpenPopup={setOpenPopup} />
+      {openPopup && <Popup setOpenPopup={callbacks.onOpenPupup}>
+        <Cart shopCart={shopCart} onRemoveItem={callbacks.onRemoveItem} setOpenPopup={callbacks.onOpenPupup} />
       </Popup>}
     </PageLayout>
   );

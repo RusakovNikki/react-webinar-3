@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { cn as bem } from '@bem-react/classname';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {cn as bem} from '@bem-react/classname';
 import './style.css';
-import { formatter } from "../../utils";
+import {formatter} from '../../utils';
 
 function ItemList(props) {
   const cn = bem('Item');
@@ -20,9 +20,9 @@ function ItemList(props) {
       <div className={cn('title')}>{props.item.title}</div>
       <div className={cn('actions')}>
         <p className={cn('price')}>{`${formatter(props.item.price)}`}</p>
-        {props.children || <button onClick={callbacks.onAdd}>
+        <button onClick={callbacks.onAdd}>
           Добавить
-        </button>}
+        </button>
       </div>
     </div>
   );
@@ -36,13 +36,11 @@ ItemList.propTypes = {
     count: PropTypes.number,
     price: PropTypes.number
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  onClickItem: PropTypes.func,
 };
 
 ItemList.defaultProps = {
-  onDelete: () => { },
-  onSelect: () => { },
+  onClickItem: () => { },
 }
 
 export default React.memo(ItemList);

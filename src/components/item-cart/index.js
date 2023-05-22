@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { cn as bem } from '@bem-react/classname';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {cn as bem} from '@bem-react/classname';
 import './style.css';
-import { formatter } from "../../utils";
+import {formatter} from '../../utils';
 
 function ItemCart(props) {
   const cn = bem('Item');
@@ -20,7 +20,7 @@ function ItemCart(props) {
       <div className={cn('title')}>{props.item.title}</div>
       <div className={cn('actions')}>
         <p className={cn('price')}>{`${formatter(props.item.price)}`}</p>
-        <p className={cn("count")}>{props.item.count} шт</p>
+        <p className={cn('count')}>{props.item.count} шт</p>
         <button onClick={(e) => callbacks.onRemove(e, props.item.code)}>Удалить</button>
       </div>
     </div>
@@ -35,13 +35,11 @@ ItemCart.propTypes = {
     count: PropTypes.number,
     price: PropTypes.number
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  onRemove: PropTypes.func,
 };
 
 ItemCart.defaultProps = {
-  onDelete: () => { },
-  onSelect: () => { },
+  onRemove: () => { },
 }
 
 export default React.memo(ItemCart);

@@ -51,9 +51,9 @@ export function generateCode2() {
 }
 
 export function formatter(number) {
-  return new Intl.NumberFormat("ru", {
-    style: "currency",
-    currency: "RUB",
+  return new Intl.NumberFormat('ru', {
+    style: 'currency',
+    currency: 'RUB',
     minimumFractionDigits: 0
   }).format(number);
 }

@@ -1,4 +1,3 @@
-import { generateCode } from "./utils";
 
 /**
  * Хранилище состояния приложения
@@ -90,10 +89,10 @@ class Store {
 
     let currItem = this.shopCart.itemsList
       .filter(itm => itm.code === item.code)
-      .map(itm => ({ code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: itm.count + 1 }))[0];
+      .map(itm => ({code: itm.code, title: itm.title, price: item.price * (itm.count + 1), count: itm.count + 1}))[0];
 
     if (!currItem) {
-      currItem = { code: item.code, title: item.title, price: item.price, count: 1 };
+      currItem = {code: item.code, title: item.title, price: item.price, count: 1};
     }
 
     let itemsList = [...this.shopCart.itemsList.filter(itm => itm.code !== currItem?.code), currItem];

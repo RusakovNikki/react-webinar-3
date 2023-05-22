@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { cn as bem } from '@bem-react/classname';
+import {cn as bem} from '@bem-react/classname';
 import './style.css';
-import { formatter, plural } from "../../utils";
+import {formatter, plural} from '../../utils';
 
-function Controls({ shopCart, onOpenPupup }) {
+function Controls({shopCart, onOpenPupup}) {
   const cn = bem('Controls');
 
   return (
     <div className={cn()}>
       <p className={cn('title')}>В корзине:</p>
       {shopCart.itemsCount ?
-        <b className={cn('cart')}>{shopCart.itemsCount} {plural(shopCart.itemsCount, { one: 'товар', few: 'товара', many: 'товаров' })} / {formatter(shopCart.itemsPrice)}</b> :
+        <b className={cn('cart')}>{shopCart.itemsCount} {plural(shopCart.itemsCount, {one: 'товар', few: 'товара', many: 'товаров'})} / {formatter(shopCart.itemsPrice)}</b> :
         <b>пусто</b>}
       <button className={cn('btn')} onClick={() => onOpenPupup()}>Перейти</button>
     </div>

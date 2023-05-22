@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import ItemList from "../item-list";
 import './style.css';
 
-function List({ list, onClickItem, renderListItems }) {
+function List({list, onClickItem, renderListItems}) {
   return (
     <div className='List'>
       {list.map(item =>
@@ -17,13 +16,13 @@ List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.number
   })).isRequired,
-  onDeleteItem: PropTypes.func,
-  onSelectItem: PropTypes.func
+  onClickItem: PropTypes.func,
+  renderListItems: PropTypes.func
 };
 
 List.defaultProps = {
-  onDeleteItem: () => { },
-  onSelectItem: () => { },
+  onClickItem: () => { },
+  renderListItems: () => { }
 }
 
 export default React.memo(List);

@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import "./style.css";
+import PropTypes from "prop-types";
 import Head from "../head";
 import List from "../list";
 import { cn as bem } from "@bem-react/classname";
@@ -20,7 +21,7 @@ const Cart = ({ shopCart, onRemoveItem, setOpenPopup }) => {
   return (
     <>
       <Head title="Корзина">
-        <button className={cn("btn")} onClick={() => setOpenPopup(false)}>
+        <button className={cn("btn")} onClick={() => setOpenPopup()}>
           Закрыть
         </button>
       </Head>
@@ -41,4 +42,13 @@ const Cart = ({ shopCart, onRemoveItem, setOpenPopup }) => {
   );
 };
 
-export default Cart;
+Cart.propTypes = {
+  shopCart: PropTypes.shape({
+    itemsPrice: PropTypes.number,
+    itemsList: PropTypes.array,
+  }),
+  onRemoveItem: PropTypes.func,
+  setOpenPopup: PropTypes.func,
+};
+
+export default React.memo(Cart);
