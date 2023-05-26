@@ -13,17 +13,17 @@ function PaginationLayout({pages, onSelectPage}) {
     onSelectPage(page);
     setActivePage(page);
   }
-  console.log('qqq');
+
   let array = returnPaginationRange(pages, activePage, 1);
 
   return (
     <div className={cn()}>
       {array.map(page => {
-        return <a
+        return Number(page) ? <a
           className={`${cn('item')} ${activePage === page && cn('active')}`}
           key={page}
           onClick={() => onSelect(page)}
-        >{page}</a>
+        >{page}</a> : <span key={page}>{page}</span>
       })}
     </div>
   );

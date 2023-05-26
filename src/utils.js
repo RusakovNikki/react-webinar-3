@@ -49,18 +49,19 @@ export function returnPaginationRange(totalPage, page = 1, siblings) {
     return [...getRange(1, 5), " ...", totalPage]
   }
 
+  debugger
   let leftSiblingsIndex = Math.max(page - siblings, 1);
   let rigthSiblingsIndex = Math.min(page + siblings, totalPage);
 
   let showLeftDots = leftSiblingsIndex > 2;
-  let showRightDots = rigthSiblingsIndex < totalPage - 2;
+  let showRightDots = rigthSiblingsIndex <= totalPage - 2;
 
   if (!showLeftDots && showRightDots) {
     let leftItemsCount = 1 + 2 * siblings;
     let leftRange = getRange(1, leftItemsCount + 1)
     return [...leftRange, " ...", totalPage]
   } else if (showLeftDots && !showRightDots) {
-    let rightItemsCount = 1 + 2 * siblings;
+    let rightItemsCount = 2 + 2 * siblings;
     let rightRange = getRange(totalPage - rightItemsCount + 1, totalPage + 1);
     return [1, " ...", ...rightRange];
   } else {
