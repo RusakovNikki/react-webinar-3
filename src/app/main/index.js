@@ -12,6 +12,10 @@ function Main() {
 
   const store = useStore();
 
+  useEffect(() => {
+    store.actions.catalog.load();
+  }, []);
+
   const select = useSelector(state => ({
     amount: state.basket.amount,
     sum: state.basket.sum,
@@ -29,7 +33,7 @@ function Main() {
         sum={select.sum} />
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/about' element={<AboutPage />} />
+        <Route path='/about/:id' element={<AboutPage />} />
       </Routes>
     </PageLayout>
   );

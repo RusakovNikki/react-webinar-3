@@ -8,10 +8,6 @@ import PaginationLayout from "../../../../components/pagination-layout";
 function MainPage() {
   const store = useStore();
 
-  useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
-
   const select = useSelector((state) => ({
     list: state.catalog.list,
     pages: state.catalog.pages,
