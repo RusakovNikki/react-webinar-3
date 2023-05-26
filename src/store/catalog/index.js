@@ -1,4 +1,4 @@
-import {codeGenerator} from "../../utils";
+import {codeGenerator, getRange} from "../../utils";
 import StoreModule from "../module";
 
 class Catalog extends StoreModule {
@@ -12,7 +12,7 @@ class Catalog extends StoreModule {
     return {
       list: [],
       totalCountItems: 0,
-      pages: [],
+      pages: 0,
       limit: 10
     }
   }
@@ -28,7 +28,7 @@ class Catalog extends StoreModule {
       ...this.getState(),
       list: json.result.items,
       totalCountItems: json.result.count,
-      pages: Array.from({length: Math.round(json.result.count / 10)}, (_, index) => index + 1)
+      pages: Math.ceil(json.result.count / 10)
     }, 'Загружены товары из АПИ');
   }
 }
