@@ -14,8 +14,8 @@ function App() {
 
   return (
     <>
-      <Main/>
-      {activeModal === 'basket' && <Basket/>}
+      <Main />
+      {activeModal === 'basket' && <Basket />}
     </>
   );
 }
