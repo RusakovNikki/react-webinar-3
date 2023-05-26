@@ -45,11 +45,13 @@ export function getRange(min, max) {
 }
 
 export function returnPaginationRange(totalPage, page = 1, siblings) {
+  if (totalPage < 5) {
+    return [...getRange(1, totalPage + 1)]
+  }
   if (page === 3) {
     return [...getRange(1, 5), " ...", totalPage]
   }
 
-  debugger
   let leftSiblingsIndex = Math.max(page - siblings, 1);
   let rigthSiblingsIndex = Math.min(page + siblings, totalPage);
 
