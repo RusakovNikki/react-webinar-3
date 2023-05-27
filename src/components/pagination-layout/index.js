@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
 import './style.css';
 import {returnPaginationRange} from '../../utils';
+import useSelector from '../../store/use-selector';
 
 function PaginationLayout({pages, onSelectPage}) {
-  const [activePage, setActivePage] = useState()
+
+  const activePage = useSelector(state => state.catalog.activePage)
 
   const cn = bem('Pagination');
 
   function onSelect(page) {
     onSelectPage(page);
-    setActivePage(page);
   }
 
   let array = returnPaginationRange(pages, activePage, 1);

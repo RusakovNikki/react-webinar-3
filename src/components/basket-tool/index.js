@@ -8,13 +8,13 @@ import {translate} from '../../utils'
 import useSelector from '../../store/use-selector';
 
 
-function BasketTool({sum, amount, onOpen}) {
+function BasketTool({sum, amount, onOpen, onClickLink}) {
   const cn = bem('BasketTool');
   const lang = useSelector((state) => state.lang.lang);
 
   return (
     <div className={cn()}>
-      <Link to="/" className={cn("link")}>
+      <Link to="/" className={cn("link")} onClick={onClickLink}>
         {translate(lang, 'main')}
       </Link>
       <div className={cn('cart')}>

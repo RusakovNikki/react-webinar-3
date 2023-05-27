@@ -24,14 +24,15 @@ function Main() {
   const callbacks = {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
-    changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), [store])
+    changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), [store]),
+    onClickLink: useCallback(() => store.actions.catalog.load())
   }
 
   return (
     <PageLayout>
       <Head title='Магазин' onChangeLanguage={callbacks.changeLanguage} />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-        sum={select.sum} />
+        sum={select.sum} onClickLink={callbacks.onClickLink} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/about/:id' element={<AboutPage />} />
