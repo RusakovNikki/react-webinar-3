@@ -1,13 +1,14 @@
 import {memo, useCallback} from 'react';
 import propTypes from 'prop-types';
-import {numberFormat} from "../../utils";
+import {numberFormat, translate} from "../../utils";
 import {cn as bem} from "@bem-react/classname";
 import PropTypes from "prop-types";
 import './style.css';
 import {Link} from 'react-router-dom';
+import useSelector from '../../store/use-selector';
 
 function ItemBasket(props) {
-
+  const lang = useSelector((state) => state.lang.lang);
   const cn = bem('ItemBasket');
 
   const callbacks = {
@@ -25,7 +26,7 @@ function ItemBasket(props) {
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>
         <div className={cn('cell')}>{numberFormat(props.item.amount || 0)} шт</div>
-        <div className={cn('cell')}><button onClick={callbacks.onRemove}>Удалить</button></div>
+        <div className={cn('cell')}><button onClick={callbacks.onRemove}>{translate(lang, 'dell')}</button></div>
       </div>
     </div>
   )

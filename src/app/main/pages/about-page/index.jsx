@@ -4,13 +4,15 @@ import { Link, useParams } from "react-router-dom";
 import "./style.css";
 import useStore from "../../../../store/use-store";
 import useSelector from "../../../../store/use-selector";
+import { translate } from "../../../../utils";
 
 const AboutPage = () => {
   const cn = bem("AboutPage");
   const { id } = useParams();
   const store = useStore();
   const select = useSelector((state) => state.item.data);
-  console.log(select);
+  const lang = useSelector((state) => state.lang.lang);
+
   useEffect(() => {
     store.actions.item.load(id);
   }, [id]);
@@ -35,7 +37,7 @@ const AboutPage = () => {
       </p>
       <h3>Цена: {select?.price} Р</h3>
       <button onClick={() => callbacks.addToBasket(select?._id)}>
-        Добавить
+        {translate(lang, "add")}
       </button>
     </div>
   );

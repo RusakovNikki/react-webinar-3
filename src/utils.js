@@ -71,3 +71,32 @@ export function returnPaginationRange(totalPage, page = 1, siblings) {
     return [1, "... ", ...middleRange, " ...", totalPage]
   }
 }
+
+const translations = {
+  en: {
+    cart: 'In the basket',
+    main: 'Main',
+    Магазин: 'Shop',
+    пусто: 'empty',
+    go: 'Go',
+    add: 'Add',
+    dell: 'Delete',
+    close: 'Close',
+    total: 'Total'
+  },
+  ru: {
+    cart: 'В корзине',
+    main: 'Главная',
+    Магазин: 'Магазин',
+    пусто: 'пусто',
+    go: 'Перейти',
+    add: 'Добавить',
+    dell: 'Удалить',
+    close: 'Закрыть',
+    total: 'Итого'
+  },
+};
+
+export function translate(lang, keyName) {
+  return translations[lang][keyName] || keyName
+}
