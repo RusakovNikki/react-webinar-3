@@ -23,9 +23,6 @@ const AboutPage = () => {
 
   return (
     <div className={cn()}>
-      <Link to="/" className={cn("link")}>
-        Главная
-      </Link>
       <p>{select?.description}</p>
       <p>
         Страна производитель: <b>{select?.madeIn?.title}</b>

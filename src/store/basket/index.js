@@ -33,7 +33,6 @@ class Basket extends StoreModule {
       // @todo В реальном приложении будет запрос к АПИ вместо поиска по состоянию.
       let item = this.store.getState().catalog.list.find(item => item._id === _id);
       if (!item) {
-        debugger
         item = await this.store.actions.item.fetchItem(_id)
         list.push({price: item.result.price, title: item.result.title, _id: item.result._id, amount: 1});
       } else {
