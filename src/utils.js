@@ -82,7 +82,12 @@ const translations = {
     add: 'Add',
     dell: 'Delete',
     close: 'Close',
-    total: 'Total'
+    total: 'Total',
+    Корзина: 'Shopping Cart',
+    country: 'Country of origin',
+    category: 'Category',
+    year: 'Year of release',
+    price: 'Price',
   },
   ru: {
     cart: 'В корзине',
@@ -93,7 +98,12 @@ const translations = {
     add: 'Добавить',
     dell: 'Удалить',
     close: 'Закрыть',
-    total: 'Итого'
+    total: 'Итого',
+    Корзина: 'Корзина',
+    country: 'Страна производитель',
+    category: 'Категория',
+    year: 'Год выпуска',
+    price: 'Цена'
   },
 };
 

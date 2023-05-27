@@ -27,15 +27,17 @@ const AboutPage = () => {
     <div className={cn()}>
       <p>{select?.description}</p>
       <p>
-        Страна производитель: <b>{select?.madeIn?.title}</b>
+        {translate(lang, "country")}: <b>{select?.madeIn?.title}</b>
       </p>
       <p>
-        Категория: <b>{select?.category?.title}</b>
+        {translate(lang, "category")}: <b>{select?.category?.title}</b>
       </p>
       <p>
-        Год выпуска: <b>{select?.edition}</b>
+        {translate(lang, "year")}: <b>{select?.edition}</b>
       </p>
-      <h3>Цена: {select?.price} Р</h3>
+      <h3>
+        {translate(lang, "price")}: {select?.price} Р
+      </h3>
       <button onClick={() => callbacks.addToBasket(select?._id)}>
         {translate(lang, "add")}
       </button>
