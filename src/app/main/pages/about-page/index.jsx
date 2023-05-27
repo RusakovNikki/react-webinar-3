@@ -10,10 +10,10 @@ const AboutPage = () => {
   const { id } = useParams();
   const store = useStore();
   const select = useSelector((state) => state.item.data);
-
-  useLayoutEffect(() => {
+  console.log(select);
+  useEffect(() => {
     store.actions.item.load(id);
-  }, []);
+  }, [id]);
   const callbacks = {
     addToBasket: useCallback(
       (_id) => store.actions.basket.addToBasket(_id),
