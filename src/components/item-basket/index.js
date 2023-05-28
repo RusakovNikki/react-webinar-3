@@ -4,7 +4,6 @@ import {numberFormat, translate} from "../../utils";
 import {cn as bem} from "@bem-react/classname";
 import PropTypes from "prop-types";
 import './style.css';
-import {Link} from 'react-router-dom';
 import useSelector from '../../store/use-selector';
 
 function ItemBasket(props) {
@@ -13,15 +12,18 @@ function ItemBasket(props) {
 
   const callbacks = {
     onRemove: (e) => props.onRemove(props.item._id),
-    onSelect: () => props.closeModal()
+    onSelect: () => {
+      props.onClickLink(props.item._id)
+      props.closeModal();
+    }
   };
 
   return (
     <div className={cn()}>
       <div className={cn('title')}>
-        <Link to={`/about/${props.item._id}`} onClick={callbacks.onSelect}>
+        <a onClick={callbacks.onSelect}>
           {props.item.title}
-        </Link>
+        </a>
       </div>
       <div className={cn('right')}>
         <div className={cn('cell')}>{numberFormat(props.item.price)} ₽</div>

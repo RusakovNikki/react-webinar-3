@@ -1,4 +1,13 @@
 /* Контрол с общими действиями */
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .BasketTool {
   display: flex;
   justify-content: space-between;
@@ -8,6 +17,11 @@
 
 .BasketTool-link {
   color: #0087E9;
+  text-decoration: none;
+}
+
+.BasketTool-link:hover {
+  text-decoration: underline;
 }
 
 .BasketTool-cart {

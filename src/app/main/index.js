@@ -7,10 +7,12 @@ import useSelector from "../../store/use-selector";
 import {Routes, Route} from 'react-router';
 import MainPage from './pages/main-page';
 import AboutPage from './pages/about-page';
+import {useNavigate} from "react-router-dom";
 
 function Main() {
 
   const store = useStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     store.actions.catalog.load();
@@ -25,7 +27,10 @@ function Main() {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
     changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), [store]),
-    onClickLink: useCallback(() => store.actions.catalog.load())
+    onClickLink: useCallback(() => {
+      store.actions.catalog.load();
+      navigate('/');
+    })
   }
 
   return (

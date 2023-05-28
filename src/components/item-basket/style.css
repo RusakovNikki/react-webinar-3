@@ -1,4 +1,13 @@
 /* Пункт списка */
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .ItemBasket {
   display: flex;
   justify-content: flex-start;
