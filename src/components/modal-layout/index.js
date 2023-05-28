@@ -33,7 +33,7 @@ function ModalLayout(props) {
       <div className={cn('frame')} ref={frame}>
         <div className={cn('head')}>
           <h1 className={cn('title')}>{translate(props.lang, props.title)}</h1>
-          <button className={cn('close')} onClick={props.onClose}>{translate(lang, 'close')}</button>
+          <button className={cn('close')} onClick={props.onClose}>{translate(props.lang, 'close')}</button>
         </div>
         <div className={cn('content')}>
           {props.children}
