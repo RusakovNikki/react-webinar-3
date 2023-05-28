@@ -2,13 +2,11 @@ import {memo} from "react";
 import PropTypes from "prop-types";
 import './style.css';
 import {translate} from '../../utils'
-import useSelector from '../../store/use-selector';
 import {cn as bem} from "@bem-react/classname";
 
 
-function Head({title, onChangeLanguage}) {
+function Head({title, onChangeLanguage, lang}) {
   const cn = bem("Head");
-  const lang = useSelector((state) => state.lang.lang);
 
   function onChangeLang(e) {
     onChangeLanguage(e.target.value)

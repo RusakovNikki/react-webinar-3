@@ -21,6 +21,7 @@ function Main() {
   const select = useSelector(state => ({
     amount: state.basket.amount,
     sum: state.basket.sum,
+    lang: state.lang.lang,
   }));
 
   const callbacks = {
@@ -35,9 +36,9 @@ function Main() {
 
   return (
     <PageLayout>
-      <Head title='Магазин' onChangeLanguage={callbacks.changeLanguage} />
+      <Head title='Магазин' onChangeLanguage={callbacks.changeLanguage} lang={select.lang} />
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-        sum={select.sum} onClickLink={callbacks.onClickLink} />
+        sum={select.sum} onClickLink={callbacks.onClickLink} lang={select.lang} />
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/about/:id' element={<AboutPage />} />

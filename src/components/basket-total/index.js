@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import {cn as bem} from '@bem-react/classname';
 import {numberFormat, translate} from "../../utils";
 import './style.css';
-import useSelector from '../../store/use-selector';
 
-function BasketTotal({sum}) {
+function BasketTotal({sum, lang}) {
   const cn = bem('BasketTotal');
-  const lang = useSelector((state) => state.lang.lang);
 
   return (
     <div className={cn()}>

@@ -4,12 +4,10 @@ import {cn as bem} from '@bem-react/classname';
 import {numberFormat, plural} from "../../utils";
 import './style.css';
 import {translate} from '../../utils'
-import useSelector from '../../store/use-selector';
 
 
-function BasketTool({sum, amount, onOpen, onClickLink}) {
+function BasketTool({sum, amount, onOpen, onClickLink, lang}) {
   const cn = bem('BasketTool');
-  const lang = useSelector((state) => state.lang.lang);
 
   return (
     <div className={cn()}>

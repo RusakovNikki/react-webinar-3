@@ -14,6 +14,7 @@ function MainPage() {
     list: state.catalog.list,
     pages: state.catalog.pages,
     activePage: state.catalog.activePage,
+    lang: state.lang.lang,
   }));
 
   const callbacks = {
@@ -37,10 +38,11 @@ function MainPage() {
             item={item}
             onAdd={callbacks.addToBasket}
             onClickLink={callbacks.onClickLink}
+            lang={select.lang}
           />
         );
       },
-      [callbacks.addToBasket]
+      [callbacks.addToBasket, select.lang]
     ),
   };
 
