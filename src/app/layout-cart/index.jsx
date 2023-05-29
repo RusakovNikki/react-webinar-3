@@ -21,10 +21,6 @@ const LayoutCart = ({ children }) => {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open("basket"), []),
     changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), []),
-    onClickLink: useCallback((link) => {
-      store.actions.catalog.load();
-      navigate(link);
-    }, []),
   };
   return (
     <PageLayout>
@@ -33,7 +29,7 @@ const LayoutCart = ({ children }) => {
         onChangeLanguage={callbacks.changeLanguage}
         lang={select.lang}
       />
-      <Nav onClickLink={callbacks.onClickLink} lang={select.lang}>
+      <Nav lang={select.lang}>
         <BasketTool
           onOpen={callbacks.openModalBasket}
           amount={select.amount}

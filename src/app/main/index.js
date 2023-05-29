@@ -18,7 +18,7 @@ function MainPage() {
     } else {
       store.actions.catalog.load(+id);
     }
-  }, []);
+  }, [id]);
 
   const select = useSelector((state) => ({
     list: state.catalog.list,
@@ -39,9 +39,6 @@ function MainPage() {
       store.actions.catalog.load(page);
       navigate(`/${page}`)
     }),
-    onClickLink: useCallback((link) => {
-      navigate(link);
-    }, []),
     onMousePagination: useCallback((e, page) => {
       console.log('qqq');
       if (e.button === 1) {
@@ -58,7 +55,6 @@ function MainPage() {
           <Item
             item={item}
             onAdd={callbacks.addToBasket}
-            onClickLink={callbacks.onClickLink}
             lang={select.lang}
           />
         );

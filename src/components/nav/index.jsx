@@ -2,19 +2,16 @@ import React from "react";
 import "./style.css";
 import { translate } from "../../utils";
 import { cn as bem } from "@bem-react/classname";
+import { Link } from "react-router-dom";
 
-const Nav = ({ onClickLink, lang, children }) => {
+const Nav = ({ lang, children }) => {
   const cn = bem("Nav");
-
-  function onClickRef() {
-    onClickLink("/");
-  }
 
   return (
     <div className={cn()}>
-      <a className={cn("link")} onClick={onClickRef}>
+      <Link to={"/1"} className={cn("link")}>
         {translate(lang, "main")}
-      </a>
+      </Link>
       {children}
     </div>
   );
