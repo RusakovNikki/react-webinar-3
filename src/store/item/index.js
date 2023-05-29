@@ -24,7 +24,6 @@ class Item extends StoreModule {
     async load(id) {
         const json = await this.fetchItem(id)
 
-        console.log(json);
         this.setState({
             ...this.getState(),
             data: {...json.result}
