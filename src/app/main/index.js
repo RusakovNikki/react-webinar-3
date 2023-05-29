@@ -10,6 +10,10 @@ function MainPage() {
   const store = useStore();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    store.actions.catalog.load();
+  }, []);
+
   const select = useSelector((state) => ({
     list: state.catalog.list,
     pages: state.catalog.pages,
@@ -25,8 +29,8 @@ function MainPage() {
     ),
     // переключение на другую страницу
     onSelectPage: useCallback((page) => store.actions.catalog.load(page)),
-    onClickLink: useCallback((id) => {
-      navigate(`/about/${id}`);
+    onClickLink: useCallback((link) => {
+      navigate(link);
     }, []),
   };
 

@@ -1,18 +1,15 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import PageLayout from "../../components/page-layout";
 import Head from "../../components/head";
 import BasketTool from "../../components/basket-tool";
 import useStore from "../../store/use-store";
 import { useNavigate } from "react-router-dom";
 import useSelector from "../../store/use-selector";
+import Nav from "../../components/nav";
 
 const LayoutCart = ({ children }) => {
   const store = useStore();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
 
   const select = useSelector((state) => ({
     amount: state.basket.amount,
@@ -24,9 +21,9 @@ const LayoutCart = ({ children }) => {
     // Открытие модалки корзины
     openModalBasket: useCallback(() => store.actions.modals.open("basket"), []),
     changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), []),
-    onClickLink: useCallback(() => {
+    onClickLink: useCallback((link) => {
       store.actions.catalog.load();
-      navigate("/");
+      navigate(link);
     }, []),
   };
   return (
@@ -36,13 +33,14 @@ const LayoutCart = ({ children }) => {
         onChangeLanguage={callbacks.changeLanguage}
         lang={select.lang}
       />
-      <BasketTool
-        onOpen={callbacks.openModalBasket}
-        amount={select.amount}
-        sum={select.sum}
-        onClickLink={callbacks.onClickLink}
-        lang={select.lang}
-      />
+      <Nav onClickLink={callbacks.onClickLink} lang={select.lang}>
+        <BasketTool
+          onOpen={callbacks.openModalBasket}
+          amount={select.amount}
+          sum={select.sum}
+          lang={select.lang}
+        />
+      </Nav>
       {children}
     </PageLayout>
   );

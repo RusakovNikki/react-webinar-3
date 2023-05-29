@@ -24,7 +24,7 @@ function Basket() {
     removeFromBasket: useCallback(_id => store.actions.basket.removeFromBasket(_id), [store]),
     // Закрытие любой модалки
     closeModal: useCallback(() => store.actions.modals.close(), [store]),
-    onClickLink: useCallback((id) => navigate(`/about/${id}`))
+    onClickLink: useCallback((link) => navigate(link))
   }
 
   const renders = {

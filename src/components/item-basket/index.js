@@ -11,7 +11,7 @@ function ItemBasket(props) {
   const callbacks = {
     onRemove: (e) => props.onRemove(props.item._id),
     onSelect: () => {
-      props.onClickLink(props.item._id)
+      props.onClickLink(`/about/${props.item._id}`)
       props.closeModal();
     }
   };

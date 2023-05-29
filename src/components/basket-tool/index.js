@@ -6,14 +6,13 @@ import './style.css';
 import {translate} from '../../utils'
 
 
-function BasketTool({sum, amount, onOpen, onClickLink, lang}) {
+function BasketTool({sum, amount, onOpen, lang}) {
   const cn = bem('BasketTool');
+
 
   return (
     <div className={cn()}>
-      <a className={cn("link")} onClick={onClickLink}>
-        {translate(lang, 'main')}
-      </a>
+
       <div className={cn('cart')}>
         <span className={cn('label')}>{translate(lang, 'cart')}:</span>
         <span className={cn('total')}>

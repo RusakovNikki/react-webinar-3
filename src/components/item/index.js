@@ -10,7 +10,7 @@ function Item(props) {
 
   const callbacks = {
     onAdd: (e) => props.onAdd(props.item._id),
-    onClickLink: () => props.onClickLink(props.item._id)
+    onClickLink: () => props.onClickLink(`/about/${props.item._id}`)
   }
 
   return (
