@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { cn as bem } from "@bem-react/classname";
 import { Link, useParams } from "react-router-dom";
 import "./style.css";
-import useStore from "../../../../store/use-store";
-import useSelector from "../../../../store/use-selector";
-import { translate } from "../../../../utils";
+import useStore from "../../store/use-store";
+import useSelector from "../../store/use-selector";
+import { translate } from "../../utils";
 
 const AboutPage = () => {
   const cn = bem("AboutPage");

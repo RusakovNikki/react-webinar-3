@@ -1,50 +1,61 @@
-import {memo, useCallback, useEffect} from 'react';
-import PageLayout from "../../components/page-layout";
-import Head from "../../components/head";
-import BasketTool from "../../components/basket-tool";
-import useStore from "../../store/use-store";
+import {memo, useCallback, useEffect} from "react";
 import useSelector from "../../store/use-selector";
-import {Routes, Route} from 'react-router';
-import MainPage from './pages/main-page';
-import AboutPage from './pages/about-page';
+import PaginationLayout from "../../components/pagination-layout";
 import {useNavigate} from "react-router-dom";
+import useStore from '../../store/use-store';
+import Item from '../../components/item';
+import List from '../../components/list';
 
-function Main() {
-
+function MainPage() {
   const store = useStore();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
-
-  const select = useSelector(state => ({
-    amount: state.basket.amount,
-    sum: state.basket.sum,
+  const select = useSelector((state) => ({
+    list: state.catalog.list,
+    pages: state.catalog.pages,
+    activePage: state.catalog.activePage,
     lang: state.lang.lang,
   }));
 
   const callbacks = {
-    // Открытие модалки корзины
-    openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
-    changeLanguage: useCallback((lang) => store.actions.lang.setLang(lang), [store]),
-    onClickLink: useCallback(() => {
-      store.actions.catalog.load();
-      navigate('/');
-    })
-  }
+    // Добавление в корзину
+    addToBasket: useCallback(
+      (_id) => store.actions.basket.addToBasket(_id),
+      [store]
+    ),
+    // переключение на другую страницу
+    onSelectPage: useCallback((page) => store.actions.catalog.load(page)),
+    onClickLink: useCallback((id) => {
+      navigate(`/about/${id}`);
+    }, []),
+  };
+
+  const renders = {
+    item: useCallback(
+      (item) => {
+        return (
+          <Item
+            item={item}
+            onAdd={callbacks.addToBasket}
+            onClickLink={callbacks.onClickLink}
+            lang={select.lang}
+          />
+        );
+      },
+      [callbacks.addToBasket, select.lang]
+    ),
+  };
 
   return (
-    <PageLayout>
-      <Head title='Магазин' onChangeLanguage={callbacks.changeLanguage} lang={select.lang} />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-        sum={select.sum} onClickLink={callbacks.onClickLink} lang={select.lang} />
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/about/:id' element={<AboutPage />} />
-      </Routes>
-    </PageLayout>
+    <>
+      <List list={select.list} renderItem={renders.item} />
+      <PaginationLayout
+        pages={select.pages}
+        activePage={select.activePage}
+        onSelectPage={callbacks.onSelectPage}
+      />
+    </>
   );
 }
 
-export default memo(Main);
+export default memo(MainPage);
