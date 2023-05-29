@@ -20,7 +20,7 @@ function App() {
     <>
       <LayoutCart>
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/:id?' element={<Main />} />
           <Route path='/about/:id' element={<AboutPage />} />
         </Routes>
       </LayoutCart>

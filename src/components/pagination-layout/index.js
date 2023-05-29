@@ -3,12 +3,16 @@ import {cn as bem} from '@bem-react/classname';
 import './style.css';
 import {returnPaginationRange} from '../../utils';
 
-function PaginationLayout({pages, activePage, onSelectPage}) {
+function PaginationLayout({pages, activePage, onMousePagination, onSelectPage}) {
   const cn = bem('Pagination');
 
   function onSelect(page) {
     onSelectPage(page);
   }
+
+  const handleMouseClick = (e, page) => {
+    onMousePagination(e, page)
+  };
 
   let array = returnPaginationRange(pages, activePage, 1);
 
@@ -18,6 +22,7 @@ function PaginationLayout({pages, activePage, onSelectPage}) {
         return Number(page) ? <a
           className={`${cn('item')} ${activePage === page && cn('active')}`}
           key={page}
+          onMouseDown={(e) => handleMouseClick(e, page)}
           onClick={() => onSelect(page)}
         >{page}</a> : <span key={page}>{page}</span>
       })}

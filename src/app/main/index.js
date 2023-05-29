@@ -1,7 +1,7 @@
 import {memo, useCallback, useEffect} from "react";
 import useSelector from "../../store/use-selector";
 import PaginationLayout from "../../components/pagination-layout";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useStore from '../../store/use-store';
 import Item from '../../components/item';
 import List from '../../components/list';
@@ -10,9 +10,14 @@ import Preloader from '../../components/preloader';
 function MainPage() {
   const store = useStore();
   const navigate = useNavigate();
+  const {id} = useParams()
 
   useEffect(() => {
-    store.actions.catalog.load();
+    if (!Number(id) || !id) {
+      store.actions.catalog.load();
+    } else {
+      store.actions.catalog.load(+id);
+    }
   }, []);
 
   const select = useSelector((state) => ({
@@ -30,10 +35,20 @@ function MainPage() {
       [store]
     ),
     // переключение на другую страницу
-    onSelectPage: useCallback((page) => store.actions.catalog.load(page)),
+    onSelectPage: useCallback((page) => {
+      store.actions.catalog.load(page);
+      navigate(`/${page}`)
+    }),
     onClickLink: useCallback((link) => {
       navigate(link);
     }, []),
+    onMousePagination: useCallback((e, page) => {
+      console.log('qqq');
+      if (e.button === 1) {
+        e.preventDefault();
+        window.open(`/${page}`, '_blank');
+      }
+    }, [])
   };
 
   const renders = {
@@ -49,7 +64,7 @@ function MainPage() {
         );
       },
       [callbacks.addToBasket, select.lang]
-    ),
+    )
   };
 
   return (
@@ -58,6 +73,7 @@ function MainPage() {
       <PaginationLayout
         pages={select.pages}
         activePage={select.activePage}
+        onMousePagination={callbacks.onMousePagination}
         onSelectPage={callbacks.onSelectPage}
       />
       {select.loading && <Preloader />}
