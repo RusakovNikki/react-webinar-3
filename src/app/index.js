@@ -12,7 +12,9 @@ import LayoutCart from './layout-cart';
  */
 function App() {
 
-  const activeModal = useSelector(state => state.modals.name);
+  const select = useSelector(state => ({
+    activeModal: state.modals.name
+  }));
 
   return (
     <>
@@ -22,7 +24,7 @@ function App() {
           <Route path='/about/:id' element={<AboutPage />} />
         </Routes>
       </LayoutCart>
-      {activeModal === 'basket' && <Basket />}
+      {select.activeModal === 'basket' && <Basket />}
     </>
   );
 }

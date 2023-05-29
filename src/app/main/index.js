@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import useStore from '../../store/use-store';
 import Item from '../../components/item';
 import List from '../../components/list';
+import Preloader from '../../components/preloader';
 
 function MainPage() {
   const store = useStore();
@@ -19,6 +20,7 @@ function MainPage() {
     pages: state.catalog.pages,
     activePage: state.catalog.activePage,
     lang: state.lang.lang,
+    loading: state.catalog.loading
   }));
 
   const callbacks = {
@@ -58,6 +60,7 @@ function MainPage() {
         activePage={select.activePage}
         onSelectPage={callbacks.onSelectPage}
       />
+      {select.loading && <Preloader />}
     </>
   );
 }

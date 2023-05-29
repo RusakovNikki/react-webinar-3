@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useLayoutEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
-import { translate } from "../../utils";
 import ProductLayout from "../../components/product-layout";
+import Preloader from "../../components/preloader";
 
 const AboutPage = () => {
   const { id } = useParams();
@@ -11,6 +11,7 @@ const AboutPage = () => {
   const select = useSelector((state) => ({
     data: state.item.data,
     lang: state.lang.lang,
+    loading: state.item.loading,
   }));
 
   useEffect(() => {
@@ -23,7 +24,12 @@ const AboutPage = () => {
     ),
   };
 
-  return <ProductLayout select={select} addToBasket={callbacks.addToBasket} />;
+  return (
+    <>
+      <ProductLayout select={select} addToBasket={callbacks.addToBasket} />
+      {select.loading && <Preloader />}
+    </>
+  );
 };
 
 export default AboutPage;

@@ -7,6 +7,7 @@ class Item extends StoreModule {
 
     initState() {
         return {
+            loading: false,
             data: {
                 description: '',
                 madeIn: {
@@ -22,11 +23,13 @@ class Item extends StoreModule {
     }
 
     async load(id) {
+        this.setLoading()
         const json = await this.fetchItem(id)
 
         this.setState({
             ...this.getState(),
-            data: {...json.result}
+            data: {...json.result},
+            loading: false
         }, 'Загружены товары из АПИ');
     }
 
@@ -35,6 +38,13 @@ class Item extends StoreModule {
         const json = await response.json();
 
         return json
+    }
+
+    setLoading() {
+        this.setState({
+            ...this.getState(),
+            loading: true
+        }, 'Загрузка');
     }
 }
 
