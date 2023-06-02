@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css'
+import {buildTreeArray} from '../../utils';
 
 const SelectCategories = ({options}) => {
     const treeArray = buildTreeArray(options);

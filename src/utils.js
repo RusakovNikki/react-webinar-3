@@ -36,7 +36,7 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
 
 
 export function buildTreeArray(data) {
-  const items = data.result.items;
+  const items = data;
   const tree = [];
 
   for (const item of items) {

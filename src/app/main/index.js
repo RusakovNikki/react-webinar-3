@@ -14,6 +14,7 @@ function Main() {
   const store = useStore();
 
   useInit(() => {
+    store.actions.catalog.loadCategories();
     store.actions.catalog.initParams();
   }, [], true);
 
@@ -22,11 +23,11 @@ function Main() {
   return (
     <PageLayout>
       <Head title={t('title')}>
-        <LocaleSelect/>
+        <LocaleSelect />
       </Head>
       <Navigation />
-      <CatalogFilter/>
-      <CatalogList/>
+      <CatalogFilter />
+      <CatalogList />
     </PageLayout>
   );
 }
