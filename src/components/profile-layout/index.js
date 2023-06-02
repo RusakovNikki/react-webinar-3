@@ -1,14 +1,14 @@
 import React from 'react';
 import './style.css';
 
-const ProfileLayout = () => {
+const ProfileLayout = ({name, number, mail}) => {
     return (
         <div className='ProfileLayout'>
             <h2>Профиль</h2>
 
-            <p>Имя: User</p>
-            <p>Телефон: +7917733283</p>
-            <p>email: sdsd@yandex.ru</p>
+            <p>Имя: <b>{name}</b></p>
+            <p>Телефон: <b>{number}</b></p>
+            <p>email: <b>{mail}</b></p>
         </div>
     )
 }

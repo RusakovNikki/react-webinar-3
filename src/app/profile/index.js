@@ -1,29 +1,24 @@
 import React from 'react';
-import './style.css'
 import {useParams} from 'react-router-dom';
 import PageLayout from '../../components/page-layout';
-import SideLayout from '../../components/side-layout';
-import Button from '../../components/Button';
-import Head from '../../components/head';
-import LocaleSelect from '../../containers/locale-select';
-import Navigation from '../../containers/navigation';
+import useSelector from "../../hooks/use-selector";
 import useTranslate from '../../hooks/use-translate';
 import ProfileLayout from '../../components/profile-layout';
+import HeaderContent from '../../containers/header-content'
+import Navigation from '../../containers/navigation';
 
 const Profile = () => {
     const {id} = useParams()
-    const {t} = useTranslate();
+
+    const select = useSelector(state => ({
+        token: state.user.token,
+        data: state.user.data,
+    }));
 
     return (
         <PageLayout>
-            <SideLayout side={'end'}>
-                <Button title={'Вход'} link={'/login'} />
-            </SideLayout>
-            <Head title={t('title')}>
-                <LocaleSelect />
-            </Head>
-            <Navigation />
-            <ProfileLayout />
+            <HeaderContent />
+            <ProfileLayout name={select.data.profile.name} number={select.data.profile.phone} mail={select.data.email} />
         </PageLayout>
     )
 }

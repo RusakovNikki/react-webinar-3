@@ -8,9 +8,9 @@ import useTranslate from '../../hooks/use-translate'
 import PageLayout from '../../components/page-layout'
 import FormEnter from '../../components/form-enter'
 import useStore from '../../hooks/use-store'
+import HeaderContent from '../../containers/header-content'
 
 const EnterPage = () => {
-  const {t} = useTranslate();
   const store = useStore();
 
   const callbacks = {
@@ -19,13 +19,7 @@ const EnterPage = () => {
 
   return (
     <PageLayout>
-      <SideLayout side={'end'}>
-        <Button title={'Вход'} link={'/login'} />
-      </SideLayout>
-      <Head title={t('title')}>
-        <LocaleSelect />
-      </Head>
-      <Navigation />
+      <HeaderContent />
       <FormEnter onClickLogin={callbacks.onClickLogin} />
     </PageLayout>
   )

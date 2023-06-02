@@ -10,6 +10,7 @@ import Navigation from "../../containers/navigation";
 import Spinner from "../../components/spinner";
 import ArticleCard from "../../components/article-card";
 import LocaleSelect from "../../containers/locale-select";
+import HeaderContent from '../../containers/header-content';
 
 function Article() {
   const store = useStore();
@@ -35,12 +36,9 @@ function Article() {
 
   return (
     <PageLayout>
-      <Head title={select.article.title}>
-        <LocaleSelect/>
-      </Head>
-      <Navigation/>
+      <HeaderContent title={select.article.title} />
       <Spinner active={select.waiting}>
-        <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t}/>
+        <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t} />
       </Spinner>
     </PageLayout>
   );
