@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './style.css'
 import {buildTreeArray} from '../../utils';
 
-const SelectCategories = ({options}) => {
+const SelectCategories = ({options, onSelect}) => {
+    const [value, setValue] = useState('')
+    function onSelectItem(e) {
+        onSelect(e.target.value);
+        // console.log(e.target.value);
+    }
+
     const treeArray = buildTreeArray(options);
 
     const renderOptions = (treeArray, indent = 0) => {
@@ -15,7 +21,7 @@ const SelectCategories = ({options}) => {
             const nestedOptions = option.children || [];
             return (
                 <React.Fragment key={option._id}>
-                    <option value={option._id} >
+                    <option value={option._id}>
                         {label}
                     </option>
                     {renderOptions(nestedOptions, indent + 1)}
@@ -25,8 +31,8 @@ const SelectCategories = ({options}) => {
     };
 
     return (
-        <select className='SelectCategories'>
-            <option value="">Все</option>
+        <select className='SelectCategories' onChange={onSelectItem}>
+            <option value={0}>Все</option>
             {renderOptions(treeArray)}
         </select>
     );
