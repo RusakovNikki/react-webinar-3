@@ -1,10 +1,12 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import React, {Fragment, useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import useSelector from "../hooks/use-selector";
 import Main from "./main";
 import Basket from "./basket";
 import Article from "./article";
 import EnterPage from './enter-page';
+import Profile from './profile';
+import {privateRoutes, publicRoutes} from '../routes';
 
 /**
  * Приложение
@@ -12,17 +14,33 @@ import EnterPage from './enter-page';
  */
 function App() {
 
-  const activeModal = useSelector(state => state.modals.name);
+  const select = useSelector(state => ({
+    activeModal: state.modals.name,
+    token: state.user.token
+  }));
 
   return (
     <>
       <Routes>
-        <Route path={''} element={<Main />} />
+        {select.token ?
+          privateRoutes.map(({key, path, Component}) => (
+            <Fragment key={key}>
+              <Route path={path} element={<Component />} />
+            </Fragment>
+          )) :
+          publicRoutes.map(({key, path, Component}) => (
+            <Fragment key={key}>
+              <Route path={path} element={<Component />} />
+            </Fragment>
+          ))}
+        <Route path="*" element={<Navigate to={''} replace />} />
+        {/* <Route path={''} element={<Main />} />
         <Route path={'/articles/:id'} element={<Article />} />
         <Route path={'/login'} element={<EnterPage />} />
+        <Route path={'/profile'} element={<Profile />} /> */}
       </Routes>
 
-      {activeModal === 'basket' && <Basket />}
+      {select.activeModal === 'basket' && <Basket />}
     </>
   );
 }

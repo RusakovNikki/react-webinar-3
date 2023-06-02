@@ -4,6 +4,7 @@ class User extends StoreModule {
     initState() {
         return {
             data: {},
+            token: '',
             waiting: false,
             error: ''
         }
@@ -29,7 +30,8 @@ class User extends StoreModule {
 
             this.setState({
                 ...this.getState(),
-                data: json.result,
+                data: json.result.user,
+                token: json.result.token,
                 waiting: false
             }, 'Загружен пользователь');
 
