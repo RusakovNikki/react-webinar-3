@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 import './style.css'
 import {buildTreeArray} from '../../utils';
 
-const SelectCategories = ({options, onSelect}) => {
-    const [value, setValue] = useState('')
+const SelectCategories = ({options, value, onSelect}) => {
     function onSelectItem(e) {
         onSelect(e.target.value);
-        // console.log(e.target.value);
     }
 
     const treeArray = buildTreeArray(options);
@@ -31,7 +29,7 @@ const SelectCategories = ({options, onSelect}) => {
     };
 
     return (
-        <select className='SelectCategories' onChange={onSelectItem}>
+        <select className='SelectCategories' value={value} onChange={onSelectItem}>
             <option value={0}>Все</option>
             {renderOptions(treeArray)}
         </select>

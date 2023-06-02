@@ -86,7 +86,7 @@ class CatalogState extends StoreModule {
       'search[query]': params.query,
     };
 
-    if (params.category) {
+    if (params.category && params.category != 0) {
       apiParams['search[category]'] = params.category;
     }
 
