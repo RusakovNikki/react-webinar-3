@@ -34,10 +34,6 @@ function App() {
             </Fragment>
           ))}
         <Route path="*" element={<Navigate to={''} replace />} />
-        {/* <Route path={''} element={<Main />} />
-        <Route path={'/articles/:id'} element={<Article />} />
-        <Route path={'/login'} element={<EnterPage />} />
-        <Route path={'/profile'} element={<Profile />} /> */}
       </Routes>
 
       {select.activeModal === 'basket' && <Basket />}
