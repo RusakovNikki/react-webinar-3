@@ -4,6 +4,7 @@ import useSelector from "../hooks/use-selector";
 import Main from "./main";
 import Basket from "./basket";
 import Article from "./article";
+import EnterPage from './enter-page';
 
 /**
  * Приложение
@@ -16,11 +17,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path={''} element={<Main/>}/>
-        <Route path={'/articles/:id'} element={<Article/>}/>
+        <Route path={''} element={<Main />} />
+        <Route path={'/articles/:id'} element={<Article />} />
+        <Route path={'/login'} element={<EnterPage />} />
       </Routes>
 
-      {activeModal === 'basket' && <Basket/>}
+      {activeModal === 'basket' && <Basket />}
     </>
   );
 }

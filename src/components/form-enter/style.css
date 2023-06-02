@@ -1,0 +1,15 @@
+.FormEnter {
+    display: flex;
+    flex-direction: column;
+    max-width: 203px;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+.FormEnter input[type="text"] {
+    margin-bottom: 19px;
+}
+
+.FormEnter-btn {
+    margin-top: 19px;
+}

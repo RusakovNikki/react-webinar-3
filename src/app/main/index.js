@@ -8,6 +8,8 @@ import Head from "../../components/head";
 import CatalogFilter from "../../containers/catalog-filter";
 import CatalogList from "../../containers/catalog-list";
 import LocaleSelect from "../../containers/locale-select";
+import SideLayout from '../../components/side-layout';
+import Button from '../../components/Button';
 
 function Main() {
 
@@ -22,6 +24,9 @@ function Main() {
 
   return (
     <PageLayout>
+      <SideLayout side={'end'}>
+        <Button title={'Вход'} link={'/login'} />
+      </SideLayout>
       <Head title={t('title')}>
         <LocaleSelect />
       </Head>
