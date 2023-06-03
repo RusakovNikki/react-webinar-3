@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {cn as bem} from '@bem-react/classname';
 import './style.css'
 
-const FormEnter = ({onClickLogin, error}) => {
+const FormEnter = ({onClickLogin, error, t}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
@@ -26,10 +26,10 @@ const FormEnter = ({onClickLogin, error}) => {
 
     return (
         <form className='FormEnter'>
-            <h2>Вход</h2>
-            <label htmlFor='login'>Логин</label>
+            <h2>{t('form.enter')}</h2>
+            <label htmlFor='login'>{t('form.login')}</label>
             <input className={cn('input')} type='text' value={login} onChange={onChangeLogin} id='login' />
-            <label htmlFor='pass'>Пароль</label>
+            <label htmlFor='pass'>{t('form.password')}</label>
             <input className={cn('input')} type='password' value={password} onChange={onChangePassword} id='pass' />
             {error && <p className={cn('error')}>{error}</p>}
             <button className={cn('btn')} onClick={onSubmitForm}>Войти</button>

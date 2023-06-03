@@ -16,6 +16,7 @@ import useInit from '../../hooks/use-init'
 const EnterPage = () => {
   const store = useStore();
   const navigate = useNavigate();
+  const {t} = useTranslate()
 
   const select = useSelector(state => ({
     token: state.user.token,
@@ -35,7 +36,7 @@ const EnterPage = () => {
   return (
     <PageLayout>
       <HeaderContent />
-      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error.login} />
+      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error.login} t={t} />
     </PageLayout>
   )
 }
