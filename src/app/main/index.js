@@ -13,7 +13,7 @@ function Main() {
   const store = useStore();
 
   useInit(() => {
-    store.actions.catalog.loadCategories();
+    store.actions.category.loadCategories();
     store.actions.catalog.initParams();
   }, [], true);
 

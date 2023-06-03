@@ -21,5 +21,7 @@
   "profile.profile": "Profile",
   "profile.name": "Name",
   "profile.phone": "Phone",
-  "profile.email": "Email"
+  "profile.email": "Email",
+  "button.enter": "Login",
+  "button.leave": "Leave"
 }

@@ -24,14 +24,14 @@ const HeaderContent = ({title}) => {
 
     return (
         <>
-            <SideLayout side={'end'}>
-                {select.token ? <>
+            {select.token ?
+                <SideLayout side={'end'}>
                     <Link to={'/profile'}>{select.data.profile.name}</Link>
-                    <Button title={'Выход'} onLeave={callbacks.onLeave} />
-                </> : <>
-                    <Button title={'Вход'} link={'/login'} />
-                </>}
-            </SideLayout>
+                    <Button title={t('button.leave')} onLeave={callbacks.onLeave} />
+                </SideLayout> :
+                <SideLayout side={'end'}>
+                    <Button title={t('button.enter')} link={'/login'} />
+                </SideLayout>}
             <Head title={title || t('title')}>
                 <LocaleSelect />
             </Head>
