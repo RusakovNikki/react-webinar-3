@@ -6,7 +6,11 @@ class User extends StoreModule {
             data: {},
             token: '',
             waiting: false,
-            error: ''
+            error: {
+                login: '',
+                logout: '',
+                localData: ''
+            }
         }
     }
 
@@ -33,7 +37,7 @@ class User extends StoreModule {
                     ...this.getState(),
                     data: json.result.user,
                     token: json.result.token,
-                    error: '',
+                    error: {...this.getState().error, login: this.initState().error.login},
                     waiting: false
                 }, 'Пользователь загружен');
 
@@ -46,7 +50,7 @@ class User extends StoreModule {
             this.setState({
                 ...this.getState(),
                 waiting: false,
-                error: error.toString()
+                error: {...this.initState().error, ...this.getState().error, login: error.toString()}
             }, 'Ошибка');
         }
 
@@ -70,7 +74,7 @@ class User extends StoreModule {
                     ...this.getState(),
                     data: json.result,
                     token,
-                    error: '',
+                    error: {...this.getState().error, localData: this.initState().error.localData},
                     waiting: false
                 }, 'Пользователь загружен');
             } else {
@@ -80,7 +84,7 @@ class User extends StoreModule {
             this.setState({
                 ...this.getState(),
                 waiting: false,
-                error: error.toString()
+                error: {...this.initState().error, ...this.getState().error, localData: error.toString()}
             }, 'Ошибка');
         }
 
@@ -120,7 +124,7 @@ class User extends StoreModule {
             this.setState({
                 ...this.getState(),
                 waiting: false,
-                error: error.toString()
+                error: {...this.initState().error, ...this.getState().error, logout: error.toString()}
             }, 'Ошибка');
         }
 

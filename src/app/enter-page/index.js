@@ -35,7 +35,7 @@ const EnterPage = () => {
   return (
     <PageLayout>
       <HeaderContent />
-      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error} />
+      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error.login} />
     </PageLayout>
   )
 }
