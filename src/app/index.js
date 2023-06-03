@@ -7,17 +7,24 @@ import Article from "./article";
 import EnterPage from './enter-page';
 import Profile from './profile';
 import {privateRoutes, publicRoutes} from '../routes';
+import useInit from '../hooks/use-init';
+import useStore from '../hooks/use-store';
 
 /**
  * Приложение
  * @returns {React.ReactElement}
  */
 function App() {
+  const store = useStore();
 
   const select = useSelector(state => ({
     activeModal: state.modals.name,
     token: state.user.token
   }));
+
+  useInit(() => {
+    store.actions.user.setUserData();
+  }, [])
 
   return (
     <>

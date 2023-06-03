@@ -6,10 +6,15 @@
     align-items: flex-start;
 }
 
-.FormEnter input[type="text"] {
+.FormEnter-input {
     margin-bottom: 19px;
 }
 
 .FormEnter-btn {
-    margin-top: 19px;
+    /* margin-top: 19px; */
+}
+
+.FormEnter-error {
+    color: red;
+    margin: 0 0 20px;
 }

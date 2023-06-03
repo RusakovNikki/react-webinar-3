@@ -11,20 +11,22 @@ import useStore from '../../hooks/use-store'
 import HeaderContent from '../../containers/header-content'
 import {useNavigate} from 'react-router-dom'
 import useSelector from '../../hooks/use-selector'
+import useInit from '../../hooks/use-init'
 
 const EnterPage = () => {
   const store = useStore();
   const navigate = useNavigate();
 
   const select = useSelector(state => ({
-    token: state.user.token
+    token: state.user.token,
+    error: state.user.error
   }));
 
   const callbacks = {
     onClickLogin: useCallback((data) => store.actions.user.login(data), [store])
   }
 
-  useEffect(() => {
+  useInit(() => {
     if (select.token) {
       navigate('/profile');
     }
@@ -33,7 +35,7 @@ const EnterPage = () => {
   return (
     <PageLayout>
       <HeaderContent />
-      <FormEnter onClickLogin={callbacks.onClickLogin} />
+      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error} />
     </PageLayout>
   )
 }
