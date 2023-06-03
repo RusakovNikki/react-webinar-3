@@ -19,7 +19,7 @@ const HeaderContent = ({title}) => {
     }));
 
     const callbacks = {
-        onLeave: useCallback(() => console.log('qqq'))
+        onLeave: useCallback(() => store.actions.user.logout())
     }
 
     return (

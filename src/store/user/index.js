@@ -15,7 +15,7 @@ class User extends StoreModule {
         this.setState({
             ...this.getState(),
             waiting: true
-        }, 'Загружен пользователь');
+        }, 'Загрузка пользователя');
 
         try {
             const result = await fetch('/api/v1/users/sign', {
@@ -33,17 +33,49 @@ class User extends StoreModule {
                 data: json.result.user,
                 token: json.result.token,
                 waiting: false
-            }, 'Загружен пользователь');
+            }, 'Пользователь загружен');
 
         } catch (error) {
-            console.log(error.toString());
-            // this.setState({
-            //     ...this.getState(),
-            //     waiting: false,
-            //     error: error.toString()
-            // }, 'Загружен пользователь');
+            this.setState({
+                ...this.getState(),
+                waiting: false,
+                error: error.toString()
+            }, 'Ошибка');
         }
 
+    }
+
+    async logout() {
+        this.setState({
+            ...this.getState(),
+            waiting: true
+        }, 'Загружен пользователь');
+
+        try {
+            const token = this.getState().token;
+
+            const result = await fetch('/api/v1/users/sign', {
+                method: "DELETE",
+                headers: {
+                    "X-Token": token,
+                    "Content-Type": "application/json"
+                }
+            })
+
+            const json = await result.json()
+            if (json?.result === true) {
+                this.setState({
+                    ...this.getState(),
+                    ...this.initState()
+                }, 'Пользователь вышел');
+            }
+        } catch (error) {
+
+        }
+        // this.setState({
+        //     ...this.getState(),
+        //     ...this.initState()
+        // }, 'Загружен пользователь');
     }
 
 }
