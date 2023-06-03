@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 import './style.css'
 import {buildTreeArray} from '../../utils';
 
@@ -34,6 +35,12 @@ const SelectCategories = ({options, value, onSelect}) => {
             {renderOptions(treeArray)}
         </select>
     );
+}
+
+SelectCategories.propTypes = {
+    options: PropTypes.array,
+    value: PropTypes.string,
+    onSelect: PropTypes.func
 }
 
 export default SelectCategories

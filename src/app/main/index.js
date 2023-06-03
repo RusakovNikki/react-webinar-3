@@ -6,7 +6,6 @@ import PageLayout from "../../components/page-layout";
 import CatalogFilter from "../../containers/catalog-filter";
 import CatalogList from "../../containers/catalog-list";
 import HeaderContent from '../../containers/header-content';
-import Navigation from '../../containers/navigation';
 
 function Main() {
 

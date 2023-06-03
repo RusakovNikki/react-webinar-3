@@ -1,6 +1,6 @@
 import StoreModule from '../module';
 
-class Category extends StoreModule {
+class CategoryState extends StoreModule {
     initState() {
         return {
             categoryItems: [],
@@ -32,4 +32,4 @@ class Category extends StoreModule {
     }
 }
 
-export default Category;
+export default CategoryState;

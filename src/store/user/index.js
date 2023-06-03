@@ -1,6 +1,6 @@
 import StoreModule from '../module';
 
-class User extends StoreModule {
+class UserState extends StoreModule {
     initState() {
         return {
             data: {},
@@ -132,4 +132,4 @@ class User extends StoreModule {
 
 }
 
-export default User;
+export default UserState;

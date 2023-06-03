@@ -1,11 +1,8 @@
-import React, {Fragment, useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import React, {Fragment} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import useSelector from "../hooks/use-selector";
 import Main from "./main";
 import Basket from "./basket";
-import Article from "./article";
-import EnterPage from './enter-page';
-import Profile from './profile';
 import {privateRoutes, publicRoutes} from '../routes';
 import useInit from '../hooks/use-init';
 import useStore from '../hooks/use-store';
