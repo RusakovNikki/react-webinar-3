@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Routes>
+      {!select.waiting && <Routes>
         {select.token ?
           privateRoutes.map(({key, path, Component}) => (
             <Fragment key={key}>
@@ -37,8 +37,7 @@ function App() {
               <Route path={path} element={<Component />} />
             </Fragment>
           ))}
-        <Route path="*" element={<Navigate to={''} replace />} />
-      </Routes>
+      </Routes>}
 
       {select.activeModal === 'basket' && <Basket />}
     </>
