@@ -19,7 +19,8 @@ const EnterPage = () => {
   }));
 
   const callbacks = {
-    onClickLogin: useCallback((data) => store.actions.user.login(data), [store])
+    onClickLogin: useCallback((data) => store.actions.user.login(data), [store]),
+    resetError: useCallback(() => store.actions.user.resetError(), [store])
   }
 
   useInit(() => {
@@ -31,7 +32,7 @@ const EnterPage = () => {
   return (
     <PageLayout>
       <HeaderContent />
-      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error.login} t={t} />
+      <FormEnter onClickLogin={callbacks.onClickLogin} error={select.error.login} resetError={callbacks.resetError} t={t} />
     </PageLayout>
   )
 }

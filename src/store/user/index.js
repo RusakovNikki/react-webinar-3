@@ -43,7 +43,8 @@ class UserState extends StoreModule {
 
                 localStorage.setItem('token', json.result.token);
             } else {
-                throw new Error(`Ошибка HTTP: ${result.status}, ${result.statusText}`);
+                const json = await result.json();
+                throw new Error(`${json.error.message}: ${json.error.data.issues.map(issue => issue.message).join(',')}`);
             }
 
         } catch (error) {
@@ -78,7 +79,8 @@ class UserState extends StoreModule {
                     waiting: false
                 }, 'Пользователь загружен');
             } else {
-                throw new Error(`Ошибка HTTP: ${result.status}, ${result.statusText}`)
+                const json = await result.json();
+                throw new Error(`${json.error.message}: ${json.error.data.issues.map(issue => issue.message).join(',')}`);
             }
         } catch (error) {
             this.setState({
@@ -116,7 +118,8 @@ class UserState extends StoreModule {
 
                 localStorage.removeItem('token')
             } else {
-                throw new Error(`Ошибка HTTP: ${result.status}, ${result.statusText}`)
+                const json = await result.json();
+                throw new Error(`${json.error.message}: ${json.error.data.issues.map(issue => issue.message).join(',')}`);
             }
 
 
@@ -128,6 +131,13 @@ class UserState extends StoreModule {
             }, 'Ошибка');
         }
 
+    }
+
+    resetError() {
+        this.setState({
+            ...this.getState(),
+            error: {...this.initState().error, ...this.getState().error, login: ''}
+        }, 'Загружен пользователь');
     }
 
 }

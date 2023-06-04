@@ -1,12 +1,18 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {cn as bem} from '@bem-react/classname';
 import './style.css'
 
-const FormEnter = ({onClickLogin, error, t}) => {
+const FormEnter = ({onClickLogin, error, resetError, t}) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
     const cn = bem('FormEnter');
+
+    useEffect(() => {
+        setLogin('');
+        setPassword('');
+        return (() => resetError())
+    }, [])
 
     function onChangeLogin(e) {
         setLogin(e.target.value);
