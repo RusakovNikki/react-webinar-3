@@ -14,7 +14,7 @@ const Profile = () => {
     return (
         <PageLayout>
             <HeaderContent />
-            <ProfileLayout name={select.data.profile.name} number={select.data.profile.phone} mail={select.data.email} t={t} />
+            <ProfileLayout name={select.data?.profile?.name} number={select.data?.profile?.phone} mail={select.data?.email} t={t} />
         </PageLayout>
     )
 }

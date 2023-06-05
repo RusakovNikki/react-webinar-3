@@ -6,6 +6,10 @@ import Basket from "./basket";
 import {privateRoutes, publicRoutes} from '../routes';
 import useInit from '../hooks/use-init';
 import useStore from '../hooks/use-store';
+import Article from './article';
+import EnterPage from './enter-page';
+import Profile from './profile';
+import PrivateRotes from './private-rotes';
 
 /**
  * Приложение
@@ -25,19 +29,14 @@ function App() {
 
   return (
     <>
-      {!select.waiting && <Routes>
-        {select.token ?
-          privateRoutes.map(({key, path, Component}) => (
-            <Fragment key={key}>
-              <Route path={path} element={<Component />} />
-            </Fragment>
-          )) :
-          publicRoutes.map(({key, path, Component}) => (
-            <Fragment key={key}>
-              <Route path={path} element={<Component />} />
-            </Fragment>
-          ))}
-      </Routes>}
+      <Routes>
+        <Route path={''} element={<Main />} />
+        <Route path={'/articles/:id'} element={<Article />} />
+        <Route path={'/login'} element={<EnterPage />} />
+        <Route element={<PrivateRotes />}>
+          <Route path={'/profile'} element={<Profile />} />
+        </Route>
+      </Routes>
 
       {select.activeModal === 'basket' && <Basket />}
     </>
